@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- =========================================================
+       ESTILO (CSS) - 100% editável aqui
+       ========================================================= -->
+    <style>
+        :root {
+            --bg: #0b0b10;
+            --panel: #11111a;
+            --panel2: #0f0f18;
+            --text: #e9e9f1;
+            --muted: #b7b7c9;
+            --border: rgba(255, 255, 255, .10);
+
+            /* “vibe” moderna / roxo */
+            --accent: #a100ff;
+            --accent2: #6b00ff;
+            --good: #27c07d;
+            --warn: #ffb020;
+            --bad: #ff4d6d;
+
+            --radius: 18px;
+            --radius2: 14px;
+            --shadow: 0 18px 48px rgba(0, 0, 0, .35);
+            --maxw: 1220px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica;
+            color: var(--text);
+            background:
+                radial-gradient(1200px 600px at 10% -20%, rgba(161, 0, 255, .35), transparent 60%),
+                radial-gradient(1000px 500px at 110% 0%, rgba(107, 0, 255, .25), transparent 55%),
+                radial-gradient(900px 500px at 50% 110%, rgba(161, 0, 255, .18), transparent 60%),
+                var(--bg);
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* Layout geral */
+        .app {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 290px;
+            padding: 22px 18px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            border-right: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(17, 17, 26, .95), rgba(11, 11, 16, .80));
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 10px 16px 10px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brandMark {
+            width: 12px;
+            height: 28px;
+            border-radius: 8px;
+            background: linear-gradient(180deg, var(--accent), var(--accent2));
+            box-shadow: 0 10px 30px rgba(161, 0, 255, .35);
+        }
+
+        .brandText {
+            line-height: 1.05;
+        }
+
+        .brandText .title {
+            font-weight: 750;
+            letter-spacing: .2px;
+            font-size: 14px;
+        }
+
+        .brandText .sub {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .nav {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 10px;
+            border-radius: 12px;
+            color: var(--muted);
+            border: 1px solid transparent;
+            transition: .15s ease;
+            user-select: none;
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, .04);
+            border-color: rgba(255, 255, 255, .08);
+            color: var(--text);
+        }
+
+        .nav a.active {
+            background: rgba(161, 0, 255, .14);
+            border-color: rgba(161, 0, 255, .35);
+            color: var(--text);
+        }
+
+        .nav .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, .28);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, .06);
+        }
+
+        .nav a.active .dot {
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(161, 0, 255, .18);
+        }
+
+        .sidebarFooter {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.25;
+        }
+
+        /* Conteúdo */
+        .content {
+            flex: 1;
+            padding: 26px 26px 80px 26px;
+        }
+
+        .container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+        }
+
+        /* Header topo */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .welcome {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .welcome h1 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: .2px;
+        }
+
+        .welcome p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 70ch;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .09);
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        /* Painéis (seções) */
+        .panel {
+            display: none;
+            /* JS controla */
+            animation: fadeIn .18s ease;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 14px;
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 16px;
+        }
+
+        .card h2,
+        .card h3 {
+            margin: 0 0 8px 0;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            letter-spacing: .2px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            color: var(--text);
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .span-12 {
+            grid-column: span 12;
+        }
+
+        .span-8 {
+            grid-column: span 8;
+        }
+
+        .span-6 {
+            grid-column: span 6;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        /* Blocos internos / subseções */
+        .sectionHeader {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            font-size: 12px;
+            color: var(--muted);
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .03);
+            padding: 6px 10px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .btnRow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+            font-size: 13px;
+            cursor: pointer;
+            transition: .15s ease;
+            user-select: none;
+        }
+
+        .btn:hover {
+            border-color: rgba(161, 0, 255, .40);
+            background: rgba(161, 0, 255, .10);
+        }
+
+        .btn.primary {
+            border-color: rgba(161, 0, 255, .50);
+            background: rgba(161, 0, 255, .16);
+        }
+
+        .hr {
+            height: 1px;
+            background: rgba(255, 255, 255, .10);
+            border: 0;
+            margin: 14px 0;
+        }
+
+        /* Quick links (cards clicáveis) */
+        .quickGrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .quick {
+            padding: 14px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, .10);
+            background: rgba(255, 255, 255, .03);
+            cursor: pointer;
+            transition: .15s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 108px;
+        }
+
+        .quick:hover {
+            transform: translateY(-1px);
+            border-color: rgba(161, 0, 255, .35);
+            background: rgba(161, 0, 255, .08);
+        }
+
+        .quick .kTitle {
+            font-weight: 750;
+            letter-spacing: .2px;
+        }
+
+        .quick .kDesc {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Embed responsivo */
+        .embedWrap {
+            border-radius: var(--radius2);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(0, 0, 0, .25);
+        }
+
+        .embed {
+            width: 100%;
+            height: 540px;
+            border: 0;
+            display: block;
+            background: transparent;
+        }
+
+        /* Acordeão simples */
+        details {
+            border: 1px solid rgba(255, 255, 255, .10);
+            border-radius: var(--radius2);
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, .03);
+        }
+
+        details+details {
+            margin-top: 10px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 650;
+            color: var(--text);
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 980px) {
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                padding: 18px 16px 70px 16px;
+            }
+
+            .quickGrid {
+                grid-template-columns: 1fr;
+            }
+
+            .embed {
+                height: 520px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+
+        <!-- =========================================================
+         SIDEBAR (menu fixo)
+         Para editar itens do menu: procure por data-nav
+         ========================================================= -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brandMark"></div>
+                <div class="brandText">
+                    <div class="title">Hub Interno</div>
+                    <div class="sub">Operação • Materiais • Acessos</div>
+                </div>
+            </div>
+
+            <nav class="nav" id="nav">
+                <!-- Seções principais (painéis) -->
+                <a href="#home" data-nav="home"><span class="dot"></span> Links rápidos</a>
+                <a href="#documentacoes" data-nav="documentacoes"><span class="dot"></span> Documentações</a>
+                <a href="#relatorios" data-nav="relatorios"><span class="dot"></span> Relatórios & Dashboards</a>
+                <a href="#digital" data-nav="digital"><span class="dot"></span> Digital Acceleration Team</a>
+                <a href="#sistemas" data-nav="sistemas"><span class="dot"></span> Sistemas e Acessos</a>
+                <a href="#treinamento" data-nav="treinamento"><span class="dot"></span> Treinamento</a>
+                <a href="#compartilhar" data-nav="compartilhar"><span class="dot"></span> Pode compartilhar com
+                    sellers</a>
+                <a href="#qualidade" data-nav="qualidade"><span class="dot"></span> Qualidade</a>
+            </nav>
+
+        </aside>
+
+        <!-- =========================================================
+         CONTEÚDO (painéis)
+         ========================================================= -->
+        <main class="content">
+            <div class="container">
+
+                <div class="topbar">
+                    <div class="welcome">
+                        <!-- EDITAR: título e descrição do “Bem-vindo” -->
+                        <h1>Bem-vindo(a)</h1>
+                        <p>
+                            Hub interno para acesso rápido a documentações, relatórios, sistemas, treinamentos e padrões
+                            operacionais.
+                            Todo o conteúdo está organizado por seções para navegação sem scroll infinito.
+                        </p>
+                    </div>
+                    <div class="pill">
+                        <span
+                            style="display:inline-block;width:10px;height:10px;border-radius:99px;background:var(--good)"></span>
+                        Web App (GAS) • Uso interno
+                    </div>
+                </div>
+
+                <!-- =========================================================
+             PANEL: HOME (Links rápidos)
+             ========================================================= -->
+                <section class="panel" id="panel-home" data-panel="home">
+                    <div class="grid">
+                        <div class="card span-12">
+                            <div class="sectionHeader">
+                                <h2>Links rápidos</h2>
+                                <span class="tag">atalhos para seções e subseções</span>
+                            </div>
+                            <p>Use os cards abaixo para ir direto ao conteúdo (seção ou subseção), sem precisar rolar a
+                                página.</p>
+
+                            <!-- EDITAR: cards do home / navegação interna -->
+                            <div class="btnRow" style="margin-top:14px;">
+                                <a class="btn primary" href="#" data-section="documentacoes"
+                                    data-anchor="sub-calendario">Calendário 2025 (embed)</a>
+                                <a class="btn" href="#" data-section="documentacoes"
+                                    data-anchor="sub-protocolos">Protocolos</a>
+                                <a class="btn" href="#" data-section="documentacoes"
+                                    data-anchor="sub-gemini">Transcrições Gemini</a>
+                                <a class="btn" href="#" data-section="treinamento" data-anchor="sub-roas">ROAS</a>
+                                <a class="btn" href="#" data-section="relatorios">Relatórios & Dashboards</a>
+                                <a class="btn" href="#" data-section="sistemas" data-anchor="sub-canais">Canais de
+                                    Suporte</a>
+                            </div>
+
+                            <hr class="hr" />
+
+                            <div class="quickGrid">
+                                <div class="quick" data-section="treinamento">
+                                    <div class="kTitle">Treinamento</div>
+                                    <div class="kDesc">Ferramentas, manuais, onboarding, ROAS e certificações.</div>
+                                </div>
+                                <div class="quick" data-section="sistemas">
+                                    <div class="kTitle">Sistemas e Acessos</div>
+                                    <div class="kDesc">VPN, Salesforce, compliance, reset de senha, canais oficiais.
+                                    </div>
+                                </div>
+                                <div class="quick" data-section="documentacoes">
+                                    <div class="kTitle">Documentações</div>
+                                    <div class="kDesc">Calendário, protocolos, apresentações, templates e padrões.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+             PANEL: DOCUMENTAÇÕES
+             ========================================================= -->
+                <section class="panel" id="panel-documentacoes" data-panel="documentacoes">
+                    <div class="grid">
+                        <div class="card span-12">
+                            <div class="sectionHeader">
+                                <h2>Documentações</h2>
+                                <span class="tag">materiais e procedimentos obrigatórios</span>
+                            </div>
+                            <p>Guias essenciais e procedimentos de operação. Use as subseções abaixo.</p>
+                        </div>
+
+                        <!-- 2.1 Calendário 2025 -->
+                        <div class="card span-12" id="sub-calendario">
+                            <div class="sectionHeader">
+                                <h3>Calendário 2025</h3>
+                                <span class="tag">sheet embutido</span>
+                            </div>
+                            <p>Cronograma anual com abas incrustadas para visualização de datas chave.</p>
+
+                            <!-- EMBED (se não carregar, veja nota abaixo) -->
+                            <div class="embedWrap" style="margin-top:12px;">
+                                <!--
+                  IMPORTANTE:
+                  - Para embed funcionar sempre, o ideal é "Publicar na Web" a planilha e usar pubhtml.
+                  - Se já está funcionando pra você, mantenha esta URL.
+                  - Se algum dia falhar, publique e troque por:
+                    https://docs.google.com/spreadsheets/d/ID/pubhtml?widget=true&headers=false
+                -->
+                                <iframe class="embed"
+                                    src="https://docs.google.com/spreadsheets/d/1lc-4PqZapZ2TgTGLVTSwIxGJB8N2Z3iqj-DZqGYXx_w/preview">
+                                </iframe>
+                            </div>
+
+                            <div class="btnRow">
+                                <a class="btn"
+                                    href="https://docs.google.com/spreadsheets/d/1lc-4PqZapZ2TgTGLVTSwIxGJB8N2Z3iqj-DZqGYXx_w/edit?usp=sharing"
+                                    target="_blank" rel="noopener">
+                                    Abrir planilha em nova aba
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2.2 Protocolos -->
+                        <div class="card span-12" id="sub-protocolos">
+                            <div class="sectionHeader">
+                                <h3>Protocolos</h3>
+                                <span class="tag">planilha + apresentação</span>
+                            </div>
+                            <p>
+                                Feedback referente ao funcionamento, frequência e tempo de atuação de um protocolo deve
+                                ser dado ao seu supervisor,
+                                que se responsabiliza por atualizar a equipe de Sales Enablement sobre possíveis
+                                alterações necessárias.
+                            </p>
+
+                            <div class="btnRow">
+                                <a class="btn primary"
+                                    href="https://docs.google.com/spreadsheets/d/1h2JqmByltNEkPzA8iKDfRVtUlLv_u9F_FzrnEry3sNM/edit?usp=sharing"
+                                    target="_blank" rel="noopener">
+                                    Abrir planilha de Protocolos
+                                </a>
+                                <a class="btn"
+                                    href="https://docs.google.com/presentation/d/1QnRc4BOa5lkm_398orC6XCBebeaA4YXMpoegYeIX_IQ/present?slide=id.g37ff11e6c7a_0_0"
+                                    target="_blank" rel="noopener">
+                                    Abrir apresentação
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2.3 Transcrições Gemini -->
+                        <div class="card span-12" id="sub-gemini">
+                            <div class="sectionHeader">
+                                <h3>Transcrições Gemini</h3>
+                                <span class="tag">procedimento + boas práticas</span>
+                            </div>
+
+                            <p><strong>IA Gemini</strong> — Ativar Notas e Transcrições com a IA Gemini:</p>
+                            <div class="btnRow">
+                                <a class="btn primary" href="https://youtu.be/pCa8Zvf0XaE?si=UmKgdO8gten3ttsn"
+                                    target="_blank" rel="noopener">Vídeo: Ativar Notas e Transcrições</a>
+                            </div>
+
+                            <hr class="hr" />
+
+                            <details open>
+                                <summary>Procedimento: o que fazer se o link da transcrição do Gemini estiver faltando?
+                                </summary>
+                                <div class="small">
+                                    <p>
+                                        Para fechar uma Oportunidade no Salesforce com sucesso, é um requisito
+                                        obrigatório preencher o campo
+                                        <strong>"Link de Transcrição Gemini"</strong>. No entanto, podem ocorrer duas
+                                        situações em que este link não é gerado automaticamente:
+                                    </p>
+                                    <ul>
+                                        <li><strong>Cenário 1 (Falha técnica):</strong> A transcrição do Gemini foi
+                                            ativada corretamente durante a reunião, mas por um erro do sistema, o
+                                            documento e seu respectivo link não foram gerados.</li>
+                                        <li><strong>Cenário 2 (Omissão humana):</strong> A ativação da ferramenta de IA
+                                            Gemini foi omitida durante a reunião.</li>
+                                    </ul>
+
+                                    <p><strong>Solução única para ambos os cenários:</strong></p>
+                                    <ol>
+                                        <li>
+                                            <strong>Passo 1: Salvar o e-mail de recomendações</strong><br />
+                                            Localize o e-mail que contém as recomendações e o resumo da reunião.<br />
+                                            Salve este e-mail diretamente na pasta do vendedor (seller) correspondente:
+                                            <em>Seller ACN &gt; [Nome do Seller]</em>.
+                                        </li>
+                                        <li>
+                                            <strong>Passo 2: Obter e registrar a URL</strong><br />
+                                            Ao salvar o e-mail na pasta compartilhada, ele se tornará um documento
+                                            online com uma URL única.<br />
+                                            Copie a URL deste documento e cole na Oportunidade no Salesforce no campo
+                                            <strong>"Link de Transcrição Gemini"</strong>.
+                                        </li>
+                                        <li>
+                                            <strong>Passo 3: Justificar na descrição</strong><br />
+                                            No campo "Descrição" da atividade relacionada, adicione uma nota breve
+                                            explicando o motivo do link manual:
+                                            <ul>
+                                                <li><strong>Para Cenário 1 (Falha técnica):</strong> A transcrição
+                                                    automática do Gemini não foi gerada por uma falha técnica, apesar de
+                                                    ter sido ativada. A URL do e-mail de recomendações foi anexada como
+                                                    evidência manual.</li>
+                                                <li><strong>Para Cenário 2 (Omissão humana):</strong> A ferramenta de IA
+                                                    Gemini não foi ativada durante a reunião. A URL do e-mail de
+                                                    recomendações foi anexada como evidência manual.</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>Passo 4: Notificação ao supervisor (somente Cenário
+                                                1)</strong><br />
+                                            Se for falha técnica, o assessor deve notificar seu supervisor.<br />
+                                            O supervisor registra o incidente na "Planilha de Incidentes", informando o
+                                            <strong>Meet ID</strong> e o horário.
+                                        </li>
+                                    </ol>
+                                </div>
+                            </details>
+
+                            <details>
+                                <summary>Aprimore seu vídeo e áudio no Google Meet (Gemini)</summary>
+                                <div class="small">
+                                    <p>
+                                        Configure “Aparência de estúdio”, iluminação e cancelamento de ruído no Google
+                                        Meet.
+                                        Este recurso requer um plano qualificado do Google Workspace ou do Google AI.
+                                    </p>
+                                    <div class="btnRow">
+                                        <!-- EDITAR: Link da central de ajuda -->
+                                        <a class="btn" href="https://support.google.com/meet/" target="_blank"
+                                            rel="noopener">Central de ajuda do Google Meet</a>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+
+                        <!-- 2.4 Apresentações -->
+                        <div class="card span-12" id="sub-apresentacoes">
+                            <div class="sectionHeader">
+                                <h3>Apresentações</h3>
+                                <span class="tag">slides prontos</span>
+                            </div>
+
+                            <div class="btnRow">
+                                <a class="btn primary"
+                                    href="https://docs.google.com/presentation/d/1x5uEdNu6VDavMMpsmYGCAN86JB_tvJSWXKetc8zLVes/present?slide=id.g38810b5efb9_0_6"
+                                    target="_blank" rel="noopener">
+                                    Onboarding (reuniões com novos sellers)
+                                </a>
+                                <a class="btn"
+                                    href="https://docs.google.com/presentation/d/17XDq4GJHfHwC6KmVkxs0j-7NlLnpHM_9pCn-3AKygv0/edit?usp=sharing"
+                                    target="_blank" rel="noopener">
+                                    Black Friday (desenvolvimento de estratégias)
+                                </a>
+                                <a class="btn" href="https://mercadoads.docsend.com/view/gmuekeacxqfamrsf"
+                                    target="_blank" rel="noopener">
+                                    ACOS para ROAS (introdução ao tema)
+                                </a>
+                                <a class="btn"
+                                    href="https://docs.google.com/presentation/d/13NDdGb7cw7g3RSi9wjefEE5Y2BQ20IkHGpOrRa83g8U/edit?usp=sharing"
+                                    target="_blank" rel="noopener">
+                                    Quick Pitch: Cybermonday (Argentina)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2.5 Templates -->
+                        <div class="card span-12" id="sub-templates">
+                            <div class="sectionHeader">
+                                <h3>Templates</h3>
+                                <span class="tag">documentos padrão</span>
+                            </div>
+
+                            <div class="btnRow">
+                                <a class="btn primary"
+                                    href="https://docs.google.com/document/d/1GRsyEupC0aOjFxpOMjDwH56F-j9KHMa-Qkkt7cjJc_0/edit?tab=t.dz9fdva86qpf#heading=h.2i7ekf4t1773"
+                                    target="_blank" rel="noopener">
+                                    Templates (Português)
+                                </a>
+                                <a class="btn"
+                                    href="https://docs.google.com/document/d/19vB5IvtR65GMJ89b1DbLFTR40rduUcQLag8f5vDXbvc/edit?tab=t.4joes3xlvxuo#heading=h.sousie94uw9k"
+                                    target="_blank" rel="noopener">
+                                    Templates (Espanhol)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2.6 Padrões -->
+                        <div class="card span-12" id="sub-padroes">
+                            <div class="sectionHeader">
+                                <h3>Padrões</h3>
+                                <span class="tag">placeholder</span>
+                            </div>
+                            <p>
+                                <!-- EDITAR: quando você tiver os links/arquivos de padrões, coloque aqui -->
+                                Seção reservada para padrões operacionais (em construção).
+                            </p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- =========================================================
+             PANEL: RELATÓRIOS & DASHBOARDS
+             ========================================================= -->
+                <section class="panel" id="panel-relatorios" data-panel="relatorios">
+                    <div class="grid">
+                        <div class="card span-12">
+                            <div class="sectionHeader">
+                                <h2>Relatórios & Dashboards</h2>
+                                <span class="tag">Looker Studio</span>
+                            </div>
+
+                            <div class="btnRow">
+                                <a class="btn primary"
+                                    href="https://lookerstudio.google.com/reporting/46c09f16-861e-4836-ae5c-e2d56d9288dd/page/p_9lh30lumud"
+                                    target="_blank" rel="noopener">Alerta de baixa</a>
+                                <a class="btn"
+                                    href="https://lookerstudio.google.com/reporting/39d91ae2-c0d9-4048-baf7-bf312043b71c/page/p_nval7duerd"
+                                    target="_blank" rel="noopener">CDA assessores</a>
+                                <a class="btn"
+                                    href="https://lookerstudio.google.com/reporting/0d4eade3-615b-4d10-b5ae-55509ac30653/page/WhJIF"
+                                    target="_blank" rel="noopener">CDA reuniões</a>
+                                <a class="btn"
+                                    href="https://lookerstudio.google.com/reporting/a4136bc6-38cb-4725-9e14-8a985be301aa/page/8X6RF"
+                                    target="_blank" rel="noopener">Calendário de reuniões semanais</a>
+                                <a class="btn"
+                                    href="https://lookerstudio.google.com/u/0/reporting/8aea366c-6dda-4800-ac52-da6ee95ad0ac/page/p_rohoq5tvrd"
+                                    target="_blank" rel="noopener">Dashboard "Bíblia ML"</a>
+                                <a class="btn"
+                                    href="https://lookerstudio.google.com/reporting/8d314624-fba2-4e5e-a787-f932f482c20b/page/8X6RF"
+                                    target="_blank" rel="noopener">Elasticity</a>
+                                <a class="btn"
+                                    href="https://lookerstudio.google.com/reporting/5ec417b1-a091-4459-b463-bf9d24883953/page/jLOHF"
+                                    target="_blank" rel="noopener">Performance assessores</a>
+                                <a class="btn"
+                                    href="https://lookerstudio.google.com/reporting/5fc9aa69-fb03-4521-af33-b2efd02f35e5/page/p_c86jiyt1ld"
+                                    target="_blank" rel="noopener">Semáforo</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+             PANEL: DIGITAL ACCELERATION TEAM
+             ========================================================= -->
+                <section class="panel" id="panel-digital" data-panel="digital">
+                    <div class="grid">
+                        <div class="card span-12">
+                            <div class="sectionHeader">
+                                <h2>Digital Acceleration Team</h2>
+                                <span class="tag">links úteis</span>
+                            </div>
+
+                            <div class="btnRow">
+                                <a class="btn primary"
+                                    href="https://script.google.com/a/macros/mercadolibre.com/s/AKfycbxFLXwvU6uTTgqfINsAqTQjIuZJAUpw6k9DAnmkdhYtj0c9N_Cko449AGPUPbrHNZI/exec"
+                                    target="_blank" rel="noopener">
+                                    Hub de Especialistas Digitais
+                                </a>
+                                <a class="btn"
+                                    href="https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vTuofC44Sy0wEzKdTwh2yX8dW4HROCroOHU3w-Pbp--RrJG59x6kLh1pDnYus2PnuAS8yJZ15wTIDzM/pubhtml/sheet?headers=false&gid=0"
+                                    target="_blank" rel="noopener">
+                                    Specialist Support - Task Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+             PANEL: SISTEMAS E ACESSOS
+             ========================================================= -->
+                <section class="panel" id="panel-sistemas" data-panel="sistemas">
+                    <div class="grid">
+                        <div class="card span-12">
+                            <div class="sectionHeader">
+                                <h2>Sistemas e Acessos</h2>
+                                <span class="tag">processos e suporte</span>
+                            </div>
+
+                            <details open id="sub-canais">
+                                <summary>Canais de suporte (operação)</summary>
+                                <div class="small">
+                                    <p>
+                                        Na operação usamos três canais principais para resolver incidentes e
+                                        solicitações:
+                                        <br /><strong>Shield</strong> → gestão de acessos e usuários.
+                                        <br /><strong>Jira</strong> → problemas de processo no CRM Salesforce.
+                                        <br /><strong>MeliHelp</strong> → somente quando não há solução via Jira e
+                                        Shield.
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details>
+                                <summary>Central de Suporte (MeliHelp)</summary>
+                                <div class="small">
+                                    <p>
+                                        Canal oficial: <strong>meliajuda@mercadolibre.com</strong><br />
+                                        Importante: apenas solicitações enviadas por e-mail para este endereço serão
+                                        atendidas.
+                                    </p>
+                                </div>
+                            </details>
+
+                            <div class="btnRow" style="margin-top:14px;">
+                                <a class="btn primary" href="https://melihelp.adminml.com/categories/1" target="_blank"
+                                    rel="noopener">Refresh de Senha</a>
+                                <a class="btn" href="https://melihelp.adminml.com/scarif" target="_blank"
+                                    rel="noopener">Verificação de Compliance</a>
+
+                                <!-- Link de Salesforce é enorme; mantive como link direto -->
+                                <a class="btn" href="https://meli.lightning.force.com/lightning/page/home"
+                                    target="_blank" rel="noopener">Salesforce (direto)</a>
+
+                                <a class="btn"
+                                    href="https://sites.google.com/mercadolibre.com/reset-vpn-cache/in%C3%ADcio"
+                                    target="_blank" rel="noopener">Reset Global Protect (VPN)</a>
+
+                                <a class="btn" href="https://support.accenture.com/support_portal?id=tsp_landing_page"
+                                    target="_blank" rel="noopener">Suporte Accenture</a>
+                            </div>
+
+                            <hr class="hr" />
+
+                            <details>
+                                <summary>Materiais rápidos (VPN / MFA / OKTA / Jira)</summary>
+                                <div class="small">
+                                    <ul>
+                                        <li><a href="https://docs.google.com/presentation/d/17bdDtutri_38M9pyJ9jHEno7O6-sJrB-W2dgk8cZOss/present?slide=id.p"
+                                                target="_blank" rel="noopener">Limpar cache da VPN</a></li>
+                                        <li><a href="https://docs.google.com/presentation/d/1-6v4tD_XIC2UWeTbd0VTwisrz218Gj4mRbycDoqbvSo/present?slide=id.p"
+                                                target="_blank" rel="noopener">Reset MFA</a></li>
+                                        <li><a href="https://docs.google.com/presentation/d/1y24iIwN4PkfGEJw-PxaQxzYs0Y8oHV5HifbuYdWVJI8/present?slide=id.p"
+                                                target="_blank" rel="noopener">Limpar cookies no Chrome</a></li>
+                                        <li><a href="https://docs.google.com/presentation/d/1M1PLfGjb1UItVtqOUgZ-pgHWv2G289vh_ZY_yJIq5q0/present?slide=id.g371ccc6cb4e_35_0"
+                                                target="_blank" rel="noopener">Instrutivo OKTA</a></li>
+                                        <li><a href="https://docs.google.com/presentation/d/1jE_3ZRepIjP7Qm7H7AEaond8dWSUSnOeG-GQCjzB714/present?slide=id.g1d6511aa769_2_0"
+                                                target="_blank" rel="noopener">Carga do ticket no Jira</a></li>
+                                        <li><a href="https://docs.google.com/document/d/19LyOOSksdnUwhlJiB9aAex9YBGfaeTkKZSe-LVD1jv8/edit?tab=t.0"
+                                                target="_blank" rel="noopener">[Processo] Reporte Seller com problemas
+                                                no Ad Manager</a></li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details>
+                                <summary>FAQ (acessos)</summary>
+                                <div class="small">
+                                    <ul>
+                                        <li><strong>Troca de máquina:</strong> informar novo serial number ao MeliAjuda
+                                            para abertura de ticket e aprovação.</li>
+                                        <li><strong>Chrome:</strong> limpar cookies e manter atualizado (2x por semana).
+                                        </li>
+                                        <li><strong>VPN bloqueia ferramentas:</strong> atualizar Chrome/Edge, limpar
+                                            cookies, e fazer Sign Out na VPN.</li>
+                                        <li><strong>Senha vencida:</strong> pedir reset ao Team Lead (prazo máximo de 25
+                                            dias).</li>
+                                        <li><strong>Troca de celular:</strong> avisar MeliAjuda antes para reset do
+                                            Okta, se necessário.</li>
+                                        <li><strong>Licença Gemini / Agenda:</strong> solicitar via Team Lead ou
+                                            MeliAjuda.</li>
+                                    </ul>
+                                    <p>
+                                        Formulário de acesso a dashboards:
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSegaxwc3tADFfHr5SPTRvlmkN5ogeW3U7Yv3tA5RpCDRM7SDg/viewform"
+                                            target="_blank" rel="noopener">
+                                            Acceso dash CC+ - Accenture
+                                        </a>
+                                    </p>
+                                </div>
+                            </details>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+             PANEL: TREINAMENTO
+             ========================================================= -->
+                <section class="panel" id="panel-treinamento" data-panel="treinamento">
+                    <div class="grid">
+
+                        <div class="card span-12">
+                            <div class="sectionHeader">
+                                <h2>Treinamento</h2>
+                                <span class="tag">ferramentas • manuais • onboarding</span>
+                            </div>
+
+                            <div class="btnRow">
+                                <a class="btn primary"
+                                    href="https://lookerstudio.google.com/u/0/reporting/8aea366c-6dda-4800-ac52-da6ee95ad0ac/page/p_extmalqapd?pli=1"
+                                    target="_blank" rel="noopener">
+                                    Dashboard Mercado Ads - Assessores CC+
+                                </a>
+                                <a class="btn"
+                                    href="https://script.google.com/a/macros/mercadolibre.com/s/AKfycbxDboRFq03_3xV3rdBz1VyEfCS01FzmuGoXOks21Zn3q3TFgcRHiO_sKjgYumD92ma9eQ/exec?pli=1"
+                                    target="_blank" rel="noopener">
+                                    Buscador de enlaces Meli
+                                </a>
+                                <a class="btn"
+                                    href="https://lookerstudio.google.com/reporting/5fc9aa69-fb03-4521-af33-b2efd02f35e5/page/p_riy3vz6ymd?pli=1"
+                                    target="_blank" rel="noopener">
+                                    Semáforo
+                                </a>
+                            </div>
+
+                            <hr class="hr" />
+
+                            <details open>
+                                <summary>Manuais</summary>
+                                <div class="small">
+                                    <ul>
+                                        <li><strong>Manual Dashboard:</strong> <a
+                                                href="https://docs.google.com/document/d/1Uwbtq1ev20vppv08tPv6MtnaeR6I21WoM92AUXGNmrE/edit?tab=t.0"
+                                                target="_blank" rel="noopener">PT</a> | <a
+                                                href="https://docs.google.com/document/d/1OtZcDUOaO-D6EpJE8wXrTjSThfc0EWM5YrHE1BTvYyg/edit?tab=t.0"
+                                                target="_blank" rel="noopener">ES</a></li>
+                                        <li><strong>Manual Salesforce:</strong> <a
+                                                href="https://docs.google.com/spreadsheets/d/1XwS5tBUO-mBASJ3__n00ljOGt8lJ5oA67_aIQx48My4/edit?gid=0#gid=0"
+                                                target="_blank" rel="noopener">PT</a></li>
+                                        <li><strong>Manual Semáforo:</strong> <a
+                                                href="https://docs.google.com/presentation/d/1I7zzEVW431N2YJdLZ5VvmK34IpgGypHfuzZr0P4bBas/edit?pli=1&slide=id.g2dce3825205_1_11#slide=id.g2dce3825205_1_11"
+                                                target="_blank" rel="noopener">PT</a></li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details>
+                                <summary>Onboarding</summary>
+                                <div class="small">
+                                    <p>
+                                        Mercado Livre é um marketplace e ecossistema (pagamentos, logística,
+                                        publicidade, créditos etc.).
+                                        Conheça:
+                                        <a href="https://sites.google.com/mercadolivre.com/guiaself-learningmarketingdigi/conhecendo-mercado-livre"
+                                            target="_blank" rel="noopener">
+                                            guia Mercado Livre
+                                        </a>.
+                                    </p>
+                                    <p>
+                                        Material de apoio:
+                                        <a href="https://sites.google.com/mercadolivre.com/guiaself-learningmarketingdigi/inicio"
+                                            target="_blank" rel="noopener">
+                                            aqui
+                                        </a>.
+                                    </p>
+                                    <p><strong>Checklist do New Hire:</strong> internet ok, pontualidade, ambiente
+                                        tranquilo, câmera aberta, dress code, participação ativa, foco durante
+                                        treinamentos e visitas operacionais.</p>
+                                </div>
+                            </details>
+
+                            <details id="sub-roas">
+                                <summary>ROAS</summary>
+                                <div class="small">
+                                    <ul>
+                                        <li><strong>Campanhas, ROAS e leilões:</strong> <a
+                                                href="https://docs.google.com/presentation/d/1tkKjJuYqly3EfuQXDrkwVVVn9yUaoco1nI_uRkAgMXA/edit?slide=id.g11a3070f18f_0_510#slide=id.g11a3070f18f_0_510"
+                                                target="_blank" rel="noopener">PT</a> | <a
+                                                href="https://docs.google.com/presentation/d/1yvN7e4PD_gsrf6-oyaHu_Nl1iGgH32T0STRIs1mA920/edit?slide=id.g11a3070f18f_0_510#slide=id.g11a3070f18f_0_510"
+                                                target="_blank" rel="noopener">ES</a></li>
+                                        <li><strong>Capacitação ROAS:</strong> <a
+                                                href="https://docs.google.com/presentation/d/1oWHaS16a1C28BzAmbSs-WZFTyS5vE0ViBZYo6XLDQPE/edit?slide=id.p1#slide=id.p1"
+                                                target="_blank" rel="noopener">PT</a> | <a
+                                                href="https://docs.google.com/presentation/d/1_O-EEjU6w-_xdz5keT72DZAB6CeXXRdAFQ3M_JdnIdM/edit?slide=id.g388f6c910ef_0_0#slide=id.g388f6c910ef_0_0"
+                                                target="_blank" rel="noopener">ES</a></li>
+                                        <li><strong>Gravações:</strong> <a
+                                                href="https://drive.google.com/file/d/1iW7eazsRogBvd2R55Bgc1_pA9QNvyUIy/view"
+                                                target="_blank" rel="noopener">PT</a> | <a
+                                                href="https://drive.google.com/file/d/1NoKKHRbH_-b_uaLa7uqD4B2QL2ZSL8k-/view"
+                                                target="_blank" rel="noopener">ES</a></li>
+                                        <li><strong>Calculadora ACOS → ROAS:</strong> <a
+                                                href="https://acosxroas.netlify.app/#pt" target="_blank"
+                                                rel="noopener">acessar</a></li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details>
+                                <summary>Certificações</summary>
+                                <div class="small">
+                                    <ul>
+                                        <li><a href="https://academyinhouse.mercadoads.com/student/collection/1636017/path/2466600"
+                                                target="_blank" rel="noopener">Product Ads</a></li>
+                                        <li><a href="https://academyinhouse.mercadoads.com/student/collection/1636017/path/2579800"
+                                                target="_blank" rel="noopener">Brand Ads</a></li>
+                                        <li><a href="https://academyinhouse.mercadoads.com/student/collection/1636017/path/3017863"
+                                                target="_blank" rel="noopener">Display Ads Beginners</a></li>
+                                        <li><a href="https://academyinhouse.mercadoads.com/student/collection/1636017/path/3032462"
+                                                target="_blank" rel="noopener">Display Ads Advanced</a></li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+             PANEL: PODE COMPARTILHAR
+             ========================================================= -->
+                <section class="panel" id="panel-compartilhar" data-panel="compartilhar">
+                    <div class="grid">
+                        <div class="card span-12">
+                            <div class="sectionHeader">
+                                <h2>Pode compartilhar com os sellers</h2>
+                                <span class="tag">links externos</span>
+                            </div>
+
+                            <div class="btnRow">
+                                <a class="btn primary"
+                                    href="https://www.mercadolivre.com/jms/mlb/lgz/msl/login/H4sIAAAAAAAEAzVPy46DMAz8F59bqJAoFcf-SGSCodYmJEoMaVX139fZVW-e8TzsN7iw8mbkFQlGoGd0bFngBNGhLCF5w7MuvFMqs9AXTlWCCT0JpQzjuwatNN9JTTVqQZdJRbjLwywuFOX-upTjbOipvg2dKTQdTHX7daxBwUMk5rFtSymNp2RxDo6PRI0NvplSi_PBOaRXa-05uj3D56QBWYwktD8wStpJy2P9B4XD9n_4tbtdLkM3DDr0fXeDzy8FPqoMAgEAAA/user"
+                                    target="_blank" rel="noopener">
+                                    Nossos planos de assessoria
+                                </a>
+                                <a class="btn" href="https://vendedores.mercadolivre.com.br/" target="_blank"
+                                    rel="noopener">
+                                    Central de vendedores (PT)
+                                </a>
+                                <a class="btn" href="https://vendedores.mercadolibre.com.ar/" target="_blank"
+                                    rel="noopener">
+                                    Central de vendedores (ES)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- =========================================================
+             PANEL: QUALIDADE
+             ========================================================= -->
+                <section class="panel" id="panel-qualidade" data-panel="qualidade">
+                    <div class="grid">
+                        <div class="card span-12">
+                            <div class="sectionHeader">
+                                <h2>Qualidade</h2>
+                                <span class="tag">critérios e boas práticas</span>
+                            </div>
+
+                            <p>
+                                Na experiência do cliente de Mercado Livre, cada ligação conta. A qualidade no
+                                atendimento não é apenas um padrão a seguir,
+                                mas um compromisso com confiança, transparência e resultados.
+                            </p>
+
+                            <details open>
+                                <summary>Critérios de Qualidade</summary>
+                                <div class="small">
+                                    <ul>
+                                        <li>Habilidades comerciais</li>
+                                        <li>Conhecimento de produto</li>
+                                        <li>Soft skill e experiência do seller</li>
+                                        <li>Ética e conduta</li>
+                                        <li>Protocolos e procedimentos</li>
+                                        <li>Erros críticos</li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details>
+                                <summary>Erros Críticos</summary>
+                                <div class="small">
+                                    <ul>
+                                        <li>Confrontación, ameaça ou ironia</li>
+                                        <li>Incentivar baixa do serviço</li>
+                                        <li>Maltrato à marca</li>
+                                        <li>Falsa promessa / informação errónea</li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <div class="btnRow" style="margin-top:14px;">
+                                <a class="btn"
+                                    href="https://drive.google.com/drive/folders/1DlhMiFXSYnCx_te9hs23LYadK33ePu63"
+                                    target="_blank" rel="noopener">
+                                    Pasta de registros / materiais
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- =========================================================
+       JAVASCRIPT - Navegação sem scroll infinito
+       - Mostra painel por hash (#documentacoes)
+       - Links com data-section / data-anchor vão para subseções
+       ========================================================= -->
+    <script>
+        (function () {
+            const panels = Array.from(document.querySelectorAll('[data-panel]'));
+            const navLinks = Array.from(document.querySelectorAll('#nav a[data-nav]'));
+
+            function setActiveNav(section) {
+                navLinks.forEach(a => {
+                    a.classList.toggle('active', a.getAttribute('data-nav') === section);
+                });
+            }
+
+            function showPanel(section) {
+                const target = panels.find(p => p.getAttribute('data-panel') === section);
+                if (!target) section = 'home';
+
+                panels.forEach(p => p.classList.remove('active'));
+                const realTarget = panels.find(p => p.getAttribute('data-panel') === section) || document.querySelector('[data-panel="home"]');
+                realTarget.classList.add('active');
+
+                setActiveNav(section);
+
+                // Sempre sobe para o topo do conteúdo ao trocar de painel
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function navigateTo(section, anchorId) {
+                showPanel(section);
+
+                if (anchorId) {
+                    // espera o painel “aparecer” e então faz scroll para a âncora
+                    setTimeout(() => {
+                        const el = document.getElementById(anchorId);
+                        if (el) {
+                            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 120);
+                }
+
+                // atualiza hash para link compartilhável
+                const newHash = '#' + section;
+                if (location.hash !== newHash) {
+                    history.replaceState(null, '', newHash);
+                }
+            }
+
+            function initFromHash() {
+                const hash = (location.hash || '#home').replace('#', '').trim();
+                showPanel(hash || 'home');
+            }
+
+            // 1) Clique no menu lateral (hash)
+            navLinks.forEach(a => {
+                a.addEventListener('click', (ev) => {
+                    ev.preventDefault();
+                    const section = a.getAttribute('data-nav');
+                    navigateTo(section);
+                });
+            });
+
+            // 2) Botões internos / quick links (data-section / data-anchor)
+            document.addEventListener('click', (ev) => {
+                const el = ev.target.closest('[data-section]');
+                if (!el) return;
+
+                ev.preventDefault();
+                const section = el.getAttribute('data-section');
+                const anchor = el.getAttribute('data-anchor') || '';
+                navigateTo(section, anchor || null);
+            });
+
+            // 3) Hash manual (colado no browser / link compartilhado)
+            window.addEventListener('hashchange', initFromHash);
+
+            // Start
+            initFromHash();
+        })();
+    </script>
+</body>
+
+</html>
