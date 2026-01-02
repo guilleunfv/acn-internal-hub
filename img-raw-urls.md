@@ -1,32 +1,34 @@
-﻿apresentacoes.png | assets/img/apresentacoes.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/apresentacoes.png
-buscador-enlaces-meli.png | assets/img/buscador-enlaces-meli.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/buscador-enlaces-meli.png
-calendario.png | assets/img/calendario.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/calendario.png
-campanhas-roas.png | assets/img/campanhas-roas.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/campanhas-roas.png
-capacitacao-roas.png | assets/img/capacitacao-roas.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/capacitacao-roas.png
-central-vendedores.png | assets/img/central-vendedores.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/central-vendedores.png
-gemini.png | assets/img/gemini.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/gemini.png
-jira.png | assets/img/jira.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/jira.png
-manual-dashboard.png | assets/img/manual-dashboard.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/manual-dashboard.png
-manual-salesforce.png | assets/img/manual-salesforce.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/manual-salesforce.png
-manual-utilizacao-semaforo.png | assets/img/manual-utilizacao-semaforo.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/manual-utilizacao-semaforo.png
-material-apoio.png | assets/img/material-apoio.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/material-apoio.png
-meli-help.png | assets/img/meli-help.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/meli-help.png
-mercado-ads.png | assets/img/mercado-ads.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/mercado-ads.png
-mercado-livre.png | assets/img/mercado-livre.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/mercado-livre.png
-padroes.png | assets/img/padroes.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/padroes.png
-planos-assessoria.png | assets/img/planos-assessoria.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/planos-assessoria.png
-portada.png | assets/img/portada.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/portada.png
-protocolos.png | assets/img/protocolos.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/protocolos.png
-qualidade.png | assets/img/qualidade.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/qualidade.png
-refresh-senha.png | assets/img/refresh-senha.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/refresh-senha.png
-relatorios-dashboards.png | assets/img/relatorios-dashboards.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/relatorios-dashboards.png
-reset-global-protect.png | assets/img/reset-global-protect.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/reset-global-protect.png
-roas.jpg | assets/img/roas.jpg | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/roas.jpg
-salesforce.png | assets/img/salesforce.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/salesforce.png
-semaforo.png | assets/img/semaforo.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/semaforo.png
-shield.png | assets/img/shield.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/shield.png
-sincronizacao-contas.png | assets/img/sincronizacao-contas.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/sincronizacao-contas.png
-templates.png | assets/img/templates.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/templates.png
-treinamento-roas.png | assets/img/treinamento-roas.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/treinamento-roas.png
-treinamentos.png | assets/img/treinamentos.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/treinamentos.png
-verificacao-compliance.png | assets/img/verificacao-compliance.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/verificacao-compliance.png
+﻿# Imagen | URL raw
+--- | ---
+apresentacoes.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/apresentacoes.png
+buscador-enlaces-meli.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/buscador-enlaces-meli.png
+calendario.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/calendario.png
+campanhas-roas.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/campanhas-roas.png
+capacitacao-roas.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/capacitacao-roas.png
+central-vendedores.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/central-vendedores.png
+gemini.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/gemini.png
+jira.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/jira.png
+manual-dashboard.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/manual-dashboard.png
+manual-salesforce.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/manual-salesforce.png
+manual-utilizacao-semaforo.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/manual-utilizacao-semaforo.png
+material-apoio.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/material-apoio.png
+meli-help.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/meli-help.png
+mercado-ads.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/mercado-ads.png
+mercado-livre.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/mercado-livre.png
+padroes.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/padroes.png
+planos-assessoria.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/planos-assessoria.png
+portada.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/portada.png
+protocolos.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/protocolos.png
+qualidade.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/qualidade.png
+refresh-senha.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/refresh-senha.png
+relatorios-dashboards.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/relatorios-dashboards.png
+reset-global-protect.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/reset-global-protect.png
+roas.jpg | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/roas.jpg
+salesforce.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/salesforce.png
+semaforo.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/semaforo.png
+shield.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/shield.png
+sincronizacao-contas.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/sincronizacao-contas.png
+templates.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/templates.png
+treinamento-roas.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/treinamento-roas.png
+treinamentos.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/treinamentos.png
+verificacao-compliance.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/verificacao-compliance.png
