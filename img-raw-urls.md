@@ -15,7 +15,8 @@ material-apoio.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-h
 meli-help.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/meli-help.png
 mercado-ads.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/mercado-ads.png
 mercado-livre.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/mercado-livre.png
-padroes.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/padroes.png
+padroes-compliance.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/padroes-compliance.png
+padroes-visual.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/padroes-visual.png
 planos-assessoria.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/planos-assessoria.png
 portada.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/portada.png
 protocolos.png | https://raw.githubusercontent.com/guilleunfv/acn-internal-hub/main/assets/img/protocolos.png
